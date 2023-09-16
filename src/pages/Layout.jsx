@@ -7,7 +7,7 @@ import Main from "./Main";
 
 const Layout = () => {
   return (
-    <div className="bg-white dark:bg-primary-dark container mx-auto px-4 lg:px-20 ">
+    <div className="bg-white dark:bg-primary-dark  mx-auto px-4 lg:px-20 ">
       <Navbar></Navbar>
       <Main></Main>
     </div>

@@ -16,7 +16,7 @@ export const data = [
     name: "Ecommerce NLH Application",
     image: Ecomv3,
     github: "https://github.com/danbaonguyen2001",
-    live: "",
+    live: "https://ecom-nlh-v3.vercel.app/",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ export const data = [
     id: 3,
     name: "Intern Ecommerce Application",
     image: Intern,
-    github: "",
-    live: "",
+    github: "https://github.com/danbaonguyen2001/eCom-NLH-FE",
+    live: "https://e-com-nlh-fe.vercel.app/",
   },
 ];

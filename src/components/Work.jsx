@@ -1,19 +1,21 @@
 import React from "react";
 import { data } from "../constants/constants";
+import { useTranslation } from "react-i18next";
 
 const Work = () => {
   // projects file
   const project = data;
   //setProject(data);
 
+  const { t } = useTranslation(["work"]);
   return (
     <div name="work" className="w-full md:h-screen ">
       <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full">
         <div className="pb-6">
           <p className="dark:text-dark-text-heading text- text-4xl font-bold inline border-b-4 border-[#38BDF8]">
-            Work
+            {t("title")}
           </p>
-          <p className="py-4"># Check out some of my recent project</p>
+          <p className="py-4"># {t("detail")}</p>
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -36,7 +38,7 @@ const Work = () => {
                       className="text-center rounded-lg px-4 py-3 m-2
                        bg-white text-gray-700 font-bold text-lg cursor-pointer"
                     >
-                      Code
+                      {t("code")}
                     </button>
                   </a>
                   {/* eslint-disable-next-line */}
@@ -45,7 +47,7 @@ const Work = () => {
                       className="text-center rounded-lg px-4 py-3 m-2
                        bg-white text-gray-700 font-bold text-lg cursor-pointer"
                     >
-                      Live
+                      {t("live")}
                     </button>
                   </a>
                 </div>

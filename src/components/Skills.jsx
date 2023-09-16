@@ -8,16 +8,18 @@ import Tailwind from "../assets/tailwind.png";
 import Github from "../assets/github.png";
 import Figma from "../assets/figma.png";
 import Mongodb from "../assets/mongo.png";
+import { useTranslation } from "react-i18next";
 
 const Skills = () => {
+  const { t } = useTranslation(["skills"]);
   return (
-    <section name="skills" className="w-full h-screen">
+    <section name="skills" className="w-full h-screen ">
       <div className="max-w-[1000px] mx-auto p-4 flex flex-col justify-center w-full h-full">
         <div className="">
           <h1 className="dark:text-dark-text-heading text- text-4xl font-bold inline border-b-4 border-[#38BDF8]">
-            Skills
+            {t("title")}
           </h1>
-          <p className="py-4"> // These are technologies I've worked with </p>
+          <p className="py-4"> # {t("detail")} </p>
         </div>
         <ul className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4 text-center py-8  ">
           <li className="shadow-lg dark:shadow-[#040c16] rounded-lg hover:scale-110 duration-500 py-2">

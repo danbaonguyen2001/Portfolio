@@ -5,6 +5,8 @@ import { HiOutlineMail } from "react-icons/hi";
 import { Link } from "react-scroll";
 import VietNam from "../assets/vietnam.png";
 import England from "../assets/united-kingdom.png";
+import { useTranslation } from "react-i18next";
+import { locales } from "../i18n/i18n";
 
 const Navbar = () => {
   const [theme, setTheme] = useState("null");
@@ -27,17 +29,35 @@ const Navbar = () => {
   const handleThemeSwitch = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
+  const handleThemeSwitchMobile = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+    setNav(!nav);
+  };
 
   const [nav, setNav] = useState(false);
   const openNavMobile = () => {
     setNav(!nav);
   };
 
-  const [localeVN, setLocaleVN] = useState(false);
+  //Handle language
+  const { i18n } = useTranslation();
+  const currentLanguage = locales[i18n.language];
+  const changeLanguage = () => {
+    const language = currentLanguage === "vi" ? "en" : "vi";
+    console.log(language);
+    i18n.changeLanguage(language);
+  };
+  const changeLanguageMobile = () => {
+    const language = currentLanguage === "vi" ? "en" : "vi";
+    i18n.changeLanguage(language);
+    setNav(!nav);
+  };
+  const { t } = useTranslation(["navbar"]);
+  console.log(currentLanguage);
   return (
     <div>
       <nav className="fixed top-0 left-0 right-0 px-4 bg-white dark:bg-primary-dark  flex justify-between items-center h-16 border-b-[1px] border-b-primary-dark dark:border-b-slate-600 text-light-text dark:text-dark-text-heading z-10 ">
-        <a href="#home">
+        <Link to="home" smooth={true} duration={500}>
           <figure className="w-10 h-10 border rounded-full ">
             <img
               className="rounded-full ring-2 ring-slate-600"
@@ -45,31 +65,31 @@ const Navbar = () => {
               alt="nguyendan"
             />
           </figure>
-        </a>
+        </Link>
         <ul className="hidden md:flex gap-4 font-semibold ">
           <li className="hover:text-hover cursor-pointer">
             <Link to="home" smooth={true} duration={500}>
-              Home
+              {t("nav1")}
             </Link>
           </li>
-          <li className="hover:text-hover cursor-pointer">
+          {/* <li className="hover:text-hover cursor-pointer">
             <Link to="about" smooth={true} duration={500}>
-              About
+              {t("nav2")}
             </Link>
-          </li>
+          </li> */}
           <li className="hover:text-hover cursor-pointer">
             <Link to="skills" smooth={true} duration={500}>
-              Skills
+              {t("nav3")}
             </Link>
           </li>
           <li className="hover:text-hover cursor-pointer">
             <Link to="work" smooth={true} duration={500}>
-              Work
+              {t("nav4")}
             </Link>
           </li>
           <li className="hover:text-hover cursor-pointer">
             <Link to="contact" smooth={true} duration={500}>
-              Contact
+              {t("nav5")}
             </Link>
           </li>
           <li className="text-hover">
@@ -108,14 +128,13 @@ const Navbar = () => {
               )}
             </button>
           </li>
-          <li className="relative group">
-            {localeVN ? (
+          <li className="relative group" onClick={() => changeLanguage()}>
+            {currentLanguage === "en" ? (
               <img
                 src={VietNam}
                 alt=""
                 srcset=""
                 className="w-6 cursor-pointer"
-                onClick={() => setLocaleVN(false)}
               />
             ) : (
               <img
@@ -123,11 +142,10 @@ const Navbar = () => {
                 alt=""
                 srcset=""
                 className="w-6 cursor-pointer"
-                onClick={() => setLocaleVN(true)}
               />
             )}
             <span className="absolute hidden group-hover:block  bottom-[-16px] right-0 left-0">
-              {localeVN ? "VN" : "EN"}
+              {currentLanguage === "en" ? "VN" : "EN"}
             </span>
           </li>
         </ul>
@@ -183,27 +201,28 @@ const Navbar = () => {
               duration={500}
               onClick={openNavMobile}
             >
-              Home
+              {t("nav1")}
             </Link>
           </li>
-          <li className="hover:text-hover cursor-pointer">
+          {/* <li className="hover:text-hover cursor-pointer">
             <Link
               to="about"
               smooth={true}
               duration={500}
               onClick={openNavMobile}
             >
-              About
+              {t("nav2")}
             </Link>
-          </li>
+          </li> */}
           <li className="hover:text-hover cursor-pointer">
             <Link
               to="skills"
               smooth={true}
               duration={500}
+              offset={-100}
               onClick={openNavMobile}
             >
-              Skills
+              {t("nav3")}
             </Link>
           </li>
           <li className="hover:text-hover cursor-pointer">
@@ -211,9 +230,10 @@ const Navbar = () => {
               to="work"
               smooth={true}
               duration={500}
+              offset={-100}
               onClick={openNavMobile}
             >
-              Work
+              {t("nav4")}
             </Link>
           </li>
           <li className="hover:text-hover cursor-pointer">
@@ -223,12 +243,12 @@ const Navbar = () => {
               duration={500}
               onClick={openNavMobile}
             >
-              Contact
+              {t("nav5")}
             </Link>
           </li>
           <li className="text-hover">
             {" "}
-            <button onClick={handleThemeSwitch}>
+            <button onClick={handleThemeSwitchMobile}>
               {theme === "dark" ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -262,14 +282,13 @@ const Navbar = () => {
               )}
             </button>
           </li>
-          <li className="relative group">
-            {localeVN ? (
+          <li className="relative group" onClick={() => changeLanguageMobile()}>
+            {currentLanguage === "en" ? (
               <img
                 src={VietNam}
                 alt=""
                 srcset=""
                 className="w-6 cursor-pointer"
-                onClick={() => setLocaleVN(false)}
               />
             ) : (
               <img
@@ -277,11 +296,10 @@ const Navbar = () => {
                 alt=""
                 srcset=""
                 className="w-6 cursor-pointer"
-                onClick={() => setLocaleVN(true)}
               />
             )}
             <span className="absolute hidden group-hover:block  bottom-[-16px] right-0 left-0">
-              {localeVN ? "VN" : "EN"}
+              {currentLanguage === "en" ? "VN" : "EN"}
             </span>
           </li>
         </ul>
